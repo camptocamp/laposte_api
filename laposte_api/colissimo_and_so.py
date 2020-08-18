@@ -481,8 +481,6 @@ class WSInternationalNew(ColiPoste):
         self.map(provided_dict, domain, 'totalAmount')
         self.map(provided_dict, domain, 'shippingDate', 'date')
         self.map(provided_dict, domain, 'reference1', 'ref_client')
-        if self._product_code in ['CMT', 'BDP']:
-            self.map(provided_dict, domain, 'pickupLocationId')
         domain = 'customs'
         self.map(delivery['customs'], domain, 'category')
         self.map(delivery['customs'], domain, 'articles')
@@ -513,6 +511,8 @@ class WSInternationalNew(ColiPoste):
         provided_dict = delivery
         self.payload_parcel = roul_laposte.api()['parcels'][0]
         domain = 'parcels'
+        if self._product_code in ['CMT', 'BDP']:
+            self.map_parcel(provided_dict, domain, 'pickupLocationId')
         self.map_parcel(provided_dict, domain, 'weight')
         self.map_parcel(provided_dict['options'], domain, 'insuranceValue')
         self.map_parcel(provided_dict['options'], domain, 'nonMachinable')
