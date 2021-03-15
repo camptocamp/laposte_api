@@ -486,6 +486,7 @@ class WSInternationalNew(ColiPoste):
         domain = 'customs'
         self.map(delivery['customs'], domain, 'category')
         self.map(delivery['customs'], domain, 'articles')
+        self.map(delivery['customs'], domain, 'invoiceNumber')
         provided_dict = address
         domain = 'to_address'
         self.map(provided_dict, domain, 'name')
